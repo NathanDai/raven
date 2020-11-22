@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>xyz.dashwood</groupId>
+    <artifactId>raven-parent</artifactId>
+    <packaging>pom</packaging>
+    <version>0.1.1</version>
+    <modules>
+        <module>utils</module>
+        <module>core</module>
+        <module>biz</module>
+        <module>web</module>
+    </modules>
+
+    <properties>
+        <raven.version>0.1.1</raven.version>
+        <raven.util.version>0.1.1</raven.util.version>
+        <junit.version>4.13.1</junit.version>
+        <lombok.version>1.18.16</lombok.version>
+        <druid.version>1.2.3</druid.version>
+        <fastjson.version>1.2.75</fastjson.version>
+        <tk.mybatis.version>2.1.5</tk.mybatis.version>
+        <pagehelper.version>1.2.10</pagehelper.version>
+    </properties>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.5.RELEASE</version>
+        <relativePath/>
+    </parent>
+
+    <dependencyManagement>
+        <dependencies>
+
+            <!-- 子模块 start -->
+            <dependency>
+                <groupId>xyz.dashwood</groupId>
+                <artifactId>raven-utils</artifactId>
+                <version>${raven.util.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xyz.dashwood</groupId>
+                <artifactId>raven-core</artifactId>
+                <version>${raven.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>xyz.dashwood</groupId>
+                <artifactId>raven-biz</artifactId>
+                <version>${raven.version}</version>
+            </dependency>
+            <!-- 子模块 end -->
+
+            <!--第三方包 start-->
+            <!--junit-->
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>${junit.version}</version>
+            </dependency>
+
+
+            <!--lombok-->
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+            </dependency>
+
+            <!--druid-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>druid</artifactId>
+                <version>${druid.version}</version>
+            </dependency>
+
+            <!--fastjson-->
+            <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>fastjson</artifactId>
+                <version>${fastjson.version}</version>
+            </dependency>
+
+            <!--tk.mybatis-->
+            <dependency>
+                <groupId>tk.mybatis</groupId>
+                <artifactId>mapper-spring-boot-starter</artifactId>
+                <version>${tk.mybatis.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.github.pagehelper</groupId>
+                <artifactId>pagehelper-spring-boot-starter</artifactId>
+                <version>${pagehelper.version}</version>
+            </dependency>
+            <!--第三方包 end-->
+
+        </dependencies>
+    </dependencyManagement>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <profileActive>dev</profileActive>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profileActive>prod</profileActive>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profileActive>test</profileActive>
+            </properties>
+            <activation>
+                <activeByDefault>false</activeByDefault>
+            </activation>
+        </profile>
+    </profiles>
+
+</project>
